@@ -1,0 +1,17 @@
+node {
+stage('git checkout') {
+git branch: 'develop', credentialsId: 'git', url: 'https://github.com/swathim111/jenkin.git' 
+}
+stage('test') {
+sh 'mvn test'
+}
+stage('clean') {
+sh 'mvn clean install'
+}
+stage('code analysis') {
+withSonarQubeEnv(credentialsId: 'sonarid') {
+sh "mvn clean package sonar:sonar"
+}
+}
+
+}
