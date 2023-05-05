@@ -6,7 +6,7 @@ stage('test') {
 sh 'mvn test'
 }
 stage('integration testing') {
-sh 'mvn verify -DskipunitTests
+sh 'mvn verify -DskipunitTests'
 }
 stage('clean') {
 sh 'mvn clean install'
